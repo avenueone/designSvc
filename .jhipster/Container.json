@@ -1,0 +1,55 @@
+{
+    "fluentMethods": true,
+    "clientRootFolder": "designSvc",
+    "relationships": [],
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "containerID",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "width",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "height",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "xPos",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "yPos",
+            "fieldType": "Double"
+        },
+        {
+            "fieldName": "created",
+            "fieldType": "LocalDate"
+        },
+        {
+            "fieldName": "unitOfMeasure",
+            "fieldType": "UnitOfMeasureEnum",
+            "fieldValues": "INCH,MM,CM,PIXEL,PICA,POINTS"
+        },
+        {
+            "fieldName": "data",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "modified",
+            "fieldType": "LocalDate"
+        }
+    ],
+    "dto": "no",
+    "searchEngine": false,
+    "service": "serviceClass",
+    "entityTableName": "container",
+    "jpaMetamodelFiltering": false,
+    "pagination": "no",
+    "microserviceName": "designSvc"
+}
