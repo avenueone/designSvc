@@ -3,6 +3,7 @@ package org.avenue1.design.config;
 import org.avenue1.design.security.*;
 import org.avenue1.design.security.jwt.*;
 
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
@@ -25,6 +26,9 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     private final SecurityProblemSupport problemSupport;
 
+    @Value("${application.api.authentication.enabled:false}")
+    private boolean authenticationEnabled;
+
     public SecurityConfiguration(TokenProvider tokenProvider, SecurityProblemSupport problemSupport) {
         this.tokenProvider = tokenProvider;
         this.problemSupport = problemSupport;
@@ -32,10 +36,19 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 
     @Override
     public void configure(WebSecurity web) throws Exception {
-        web.ignoring()
-            .antMatchers(HttpMethod.OPTIONS, "/**")
-            .antMatchers("/swagger-ui/index.html")
-            .antMatchers("/test/**");
+        if(authenticationEnabled) {
+            web.ignoring()
+                .antMatchers(HttpMethod.OPTIONS, "/**")
+                .antMatchers("/swagger-ui/index.html")
+                .antMatchers("/test/**");
+        } else {
+            web.ignoring()
+                .antMatchers(HttpMethod.OPTIONS, "/**")
+                .antMatchers("/swagger-ui/index.html")
+                .antMatchers("/test/**")
+                .antMatchers("/**");
+        }
+
     }
 
     @Override
