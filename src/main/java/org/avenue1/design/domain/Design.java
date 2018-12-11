@@ -13,6 +13,7 @@ import java.time.LocalDate;
 import java.util.HashSet;
 import java.util.Objects;
 import java.util.Set;
+import java.util.StringJoiner;
 
 /**
  * A Design.
@@ -61,7 +62,7 @@ public class Design implements Serializable {
     private Double marginR;
 
     @Field("unit_of_measure")
-    private UnitOfMeasureEnum unitOfMeasure;
+    private UnitOfMeasureEnum unitOfMeasure ;
 
     @Field("created")
     private LocalDate created;
@@ -269,6 +270,10 @@ public class Design implements Serializable {
         return marginR;
     }
 
+    public String getSize() {
+        return new StringJoiner(",").add(width.toString()).add(" x ").add(height.toString()).add(unitOfMeasure.name()).toString();
+    }
+
     public void setMarginR(Double marginR) {
         this.marginR = marginR;
     }
@@ -280,18 +285,24 @@ public class Design implements Serializable {
 
     @Override
     public String toString() {
-        return "Design{" +
-            "id=" + getId() +
-            ", name='" + getName() + "'" +
-            ", description='" + getDescription() + "'" +
-            ", active='" + isActive() + "'" +
-            ", instrumentTypes='" + getInstrumentTypes() + "'" +
-            ", width=" + getWidth() +
-            ", height=" + getHeight() +
-            ", unitOfMeasure='" + getUnitOfMeasure() + "'" +
-            ", created='" + getCreated() + "'" +
-            ", background='" + getBackground() + "'" +
-            "}";
+        return new StringJoiner(", ", Design.class.getSimpleName() + "[", "]")
+            .add("id='" + id + "'")
+            .add("name='" + name + "'")
+            .add("description='" + description + "'")
+            .add("theme='" + theme + "'")
+            .add("active=" + active)
+            .add("instrumentTypes='" + instrumentTypes + "'")
+            .add("width=" + width)
+            .add("height=" + height)
+            .add("marginT=" + marginT)
+            .add("marginB=" + marginB)
+            .add("marginL=" + marginL)
+            .add("marginR=" + marginR)
+            .add("unitOfMeasure=" + unitOfMeasure)
+            .add("created=" + created)
+            .add("background='" + background + "'")
+            .add("containers=" + containers)
+            .toString();
     }
 
     public void setMargins(double margin) {

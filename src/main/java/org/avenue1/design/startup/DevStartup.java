@@ -1,6 +1,7 @@
 package org.avenue1.design.startup;
 
 import org.avenue1.design.domain.Design;
+import org.avenue1.design.domain.enumeration.UnitOfMeasureEnum;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Configuration;
@@ -22,6 +23,8 @@ public class DevStartup extends BaseStartup {
     private void init() {
         log.debug("Adding required dev data...");
 
+
+
         if ( designRepository.findAll().isEmpty()) {
             log.debug("Adding some sample designs...");
             List<Design> designList = new ArrayList();
@@ -31,6 +34,7 @@ public class DevStartup extends BaseStartup {
                 design.setInstrumentTypes("flyer");
                 design.setCreated(LocalDate.now());
                 design.setActive(true);
+                design.setUnitOfMeasure(UnitOfMeasureEnum.INCH);
                 design.setHeight(11d);
                 design.setWidth(8.5d);
                 design.setMargins(0.1d);
