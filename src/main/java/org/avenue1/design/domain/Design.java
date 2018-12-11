@@ -1,18 +1,18 @@
 package org.avenue1.design.domain;
 
+import org.avenue1.design.domain.enumeration.UnitOfMeasureEnum;
 import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Field;
-import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.DBRef;
-import javax.validation.constraints.*;
+import org.springframework.data.mongodb.core.mapping.Document;
+import org.springframework.data.mongodb.core.mapping.Field;
 
+import javax.validation.constraints.NotNull;
+import javax.validation.constraints.Size;
 import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import org.avenue1.design.domain.enumeration.UnitOfMeasureEnum;
+import java.util.Set;
 
 /**
  * A Design.
@@ -33,6 +33,9 @@ public class Design implements Serializable {
     @Field("description")
     private String description;
 
+    @Field("theme")
+    private String theme;
+
     @Field("active")
     private Boolean active;
 
@@ -44,6 +47,18 @@ public class Design implements Serializable {
 
     @Field("height")
     private Double height;
+
+    @Field("marginT")
+    private Double marginT;
+
+    @Field("marginB")
+    private Double marginB;
+
+    @Field("marginL")
+    private Double marginL;
+
+    @Field("marginR")
+    private Double marginR;
 
     @Field("unit_of_measure")
     private UnitOfMeasureEnum unitOfMeasure;
@@ -167,6 +182,14 @@ public class Design implements Serializable {
         return this;
     }
 
+    public String getTheme() {
+        return theme;
+    }
+
+    public void setTheme(String theme) {
+        this.theme = theme;
+    }
+
     public void setCreated(LocalDate created) {
         this.created = created;
     }
@@ -193,17 +216,6 @@ public class Design implements Serializable {
         return this;
     }
 
-    public Design addContainer(Container container) {
-        this.containers.add(container);
-        container.getDesigns().add(this);
-        return this;
-    }
-
-    public Design removeContainer(Container container) {
-        this.containers.remove(container);
-        container.getDesigns().remove(this);
-        return this;
-    }
 
     public void setContainers(Set<Container> containers) {
         this.containers = containers;
@@ -225,6 +237,42 @@ public class Design implements Serializable {
         return Objects.equals(getId(), design.getId());
     }
 
+    public Boolean getActive() {
+        return active;
+    }
+
+    public Double getMarginT() {
+        return marginT;
+    }
+
+    public void setMarginT(Double marginT) {
+        this.marginT = marginT;
+    }
+
+    public Double getMarginB() {
+        return marginB;
+    }
+
+    public void setMarginB(Double marginB) {
+        this.marginB = marginB;
+    }
+
+    public Double getMarginL() {
+        return marginL;
+    }
+
+    public void setMarginL(Double marginL) {
+        this.marginL = marginL;
+    }
+
+    public Double getMarginR() {
+        return marginR;
+    }
+
+    public void setMarginR(Double marginR) {
+        this.marginR = marginR;
+    }
+
     @Override
     public int hashCode() {
         return Objects.hashCode(getId());
@@ -244,5 +292,12 @@ public class Design implements Serializable {
             ", created='" + getCreated() + "'" +
             ", background='" + getBackground() + "'" +
             "}";
+    }
+
+    public void setMargins(double margin) {
+        this.setMarginB(margin);
+        this.setMarginT(margin);
+        this.setMarginL(margin);
+        this.setMarginR(margin);
     }
 }
