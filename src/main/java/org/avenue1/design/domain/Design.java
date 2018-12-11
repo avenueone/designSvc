@@ -2,6 +2,7 @@ package org.avenue1.design.domain;
 
 import org.avenue1.design.domain.enumeration.UnitOfMeasureEnum;
 import org.springframework.data.annotation.Id;
+import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.DBRef;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
@@ -270,8 +271,9 @@ public class Design implements Serializable {
         return marginR;
     }
 
+    @Transient
     public String getSize() {
-        return new StringJoiner(",").add(width.toString()).add(" x ").add(height.toString()).add(unitOfMeasure.name()).toString();
+        return new StringJoiner(" ").add(width.toString()).add("x").add(height.toString()).add(unitOfMeasure.name()).toString();
     }
 
     public void setMarginR(Double marginR) {

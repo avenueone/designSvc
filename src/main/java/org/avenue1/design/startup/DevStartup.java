@@ -28,7 +28,7 @@ public class DevStartup extends BaseStartup {
         if ( designRepository.findAll().isEmpty()) {
             log.debug("Adding some sample designs...");
             List<Design> designList = new ArrayList();
-            for ( int i = 0 ; i < 10; i++ ) {
+            for ( int i = 0 ; i < 3; i++ ) {
                 Design design = new Design();
                 design.setName("Sample Design " + i);
                 design.setInstrumentTypes("flyer");
