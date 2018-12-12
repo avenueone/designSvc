@@ -47,6 +47,12 @@ public class DesignService {
         return designRepository.findAllWithEagerRelationships();
     }
 
+
+    public List<Design> findAllByInstrumentType(String type) {
+        log.debug("Request to get all Designs by instrument type ");
+        return designRepository.findAllByInstrumentType(type);
+    }
+
     /**
      * Get all the Design with eager load of many-to-many relationships.
      *

@@ -19,6 +19,8 @@ public interface DesignRepository extends MongoRepository<Design, String> {
     @Query("{}")
     Page<Design> findAllWithEagerRelationships(Pageable pageable);
 
+    List<Design> findAllByInstrumentType(String instrumentType);
+
     @Query("{}")
     List<Design> findAllWithEagerRelationships();
 

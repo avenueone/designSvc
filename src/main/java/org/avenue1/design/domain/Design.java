@@ -41,8 +41,8 @@ public class Design implements Serializable {
     @Field("active")
     private Boolean active;
 
-    @Field("instrument_types")
-    private String instrumentTypes;
+    @Field("instrumentType")
+    private String instrumentType;
 
     @Field("width")
     private Double width;
@@ -124,16 +124,16 @@ public class Design implements Serializable {
     }
 
     public String getInstrumentTypes() {
-        return instrumentTypes;
+        return instrumentType;
     }
 
     public Design instrumentTypes(String instrumentTypes) {
-        this.instrumentTypes = instrumentTypes;
+        this.instrumentType = instrumentTypes;
         return this;
     }
 
-    public void setInstrumentTypes(String instrumentTypes) {
-        this.instrumentTypes = instrumentTypes;
+    public void setInstrumentType(String instrumentType) {
+        this.instrumentType = instrumentType;
     }
 
     public Double getWidth() {
@@ -293,7 +293,7 @@ public class Design implements Serializable {
             .add("description='" + description + "'")
             .add("theme='" + theme + "'")
             .add("active=" + active)
-            .add("instrumentTypes='" + instrumentTypes + "'")
+            .add("instrumentType='" + instrumentType + "'")
             .add("width=" + width)
             .add("height=" + height)
             .add("marginT=" + marginT)

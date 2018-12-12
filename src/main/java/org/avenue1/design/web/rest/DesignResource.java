@@ -91,6 +91,14 @@ public class DesignResource {
         return designService.findAll();
     }
 
+
+    @GetMapping("/designs/instrumentType/{type}")
+    @Timed
+    public List<Design> getAllDesignsByInstrumentType(@PathVariable("type") String type) {
+        log.debug("REST request to get all Designs");
+        return designService.findAllByInstrumentType(type);
+    }
+
     /**
      * GET  /designs/:id : get the "id" design.
      *
