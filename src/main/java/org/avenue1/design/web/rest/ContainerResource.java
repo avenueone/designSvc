@@ -20,6 +20,7 @@ import java.util.Optional;
 /**
  * REST controller for managing Container.
  */
+@CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/api")
 public class ContainerResource {
