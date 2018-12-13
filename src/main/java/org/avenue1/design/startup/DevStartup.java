@@ -18,6 +18,7 @@ import javax.annotation.PostConstruct;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Random;
 
 @Profile("dev")
 @Controller
@@ -31,21 +32,28 @@ public class DevStartup extends BaseStartup {
     private void init() {
         log.debug("Adding required dev data...");
 
-
-
+        String[] list = {"flyer", "web", "email"};
+        Random r = new Random();
+        double rangeMin = 3;
+        double rangeMax = 20;
         if ( designRepository.findAll().isEmpty()) {
             log.debug("Adding some sample designs...");
             List<Design> designList = new ArrayList();
-            for ( int i = 0 ; i < 3; i++ ) {
+            for ( int i = 0 ; i < 50; i++ ) {
+                double height = Math.round((rangeMin + (rangeMax - rangeMin) * r.nextDouble()) * 100 ) / 100 ;
+                double width = Math.round((rangeMin + (rangeMax - rangeMin) * r.nextDouble()) * 100 ) / 100 ;
+
                 Design design = new Design();
                 design.setName("Sample Design " + i);
-                design.setInstrumentType("flyer");
+                design.setInstrumentType(list[r.nextInt(list.length)]);
                 design.setCreated(LocalDate.now());
                 design.setActive(true);
                 design.setUnitOfMeasure(UnitOfMeasureEnum.INCH);
-                design.setHeight(11d);
-                design.setWidth(8.5d);
+                design.setHeight(height);
+                design.setWidth(width);
                 design.setMargins(0.1d);
+                design.setRows(r.nextInt(10) + 1);
+                design.setColumns(r.nextInt(10) + 1);
                 designList.add(design);
 
             }

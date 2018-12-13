@@ -44,6 +44,12 @@ public class Design implements Serializable {
     @Field("instrumentType")
     private String instrumentType;
 
+    @Field("rows")
+    private Integer rows;
+
+    @Field("columns")
+    private Integer columns;
+
     @Field("width")
     private Double width;
 
@@ -285,6 +291,26 @@ public class Design implements Serializable {
         return Objects.hashCode(getId());
     }
 
+    public String getInstrumentType() {
+        return instrumentType;
+    }
+
+    public Integer getRows() {
+        return rows;
+    }
+
+    public void setRows(Integer rows) {
+        this.rows = rows;
+    }
+
+    public Integer getColumns() {
+        return columns;
+    }
+
+    public void setColumns(Integer columns) {
+        this.columns = columns;
+    }
+
     @Override
     public String toString() {
         return new StringJoiner(", ", Design.class.getSimpleName() + "[", "]")
@@ -294,6 +320,8 @@ public class Design implements Serializable {
             .add("theme='" + theme + "'")
             .add("active=" + active)
             .add("instrumentType='" + instrumentType + "'")
+            .add("rows=" + rows)
+            .add("columns=" + columns)
             .add("width=" + width)
             .add("height=" + height)
             .add("marginT=" + marginT)
